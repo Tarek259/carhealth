@@ -26,11 +26,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/car-health-monitor.git"
+    "url": "https://github.com/Tarek259/carhealth.git"
   },
-  "homepage": "https://car-health-monitor.vercel.app",
+  "homepage": "https://car-health-monitor-76c344mji-tarek259s-projects.vercel.app",
   "bugs": {
-    "url": "https://github.com/yourusername/car-health-monitor/issues"
+    "url": "https://github.com/Tarek259/carhealth/issues"
   },
   "engines": {
     "node": ">=14.0.0"

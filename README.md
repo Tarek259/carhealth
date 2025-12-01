@@ -8,7 +8,7 @@
 
 **تطبيق ذكي لمراقبة صحة سيارتك وتتبع الصيانات الدورية**
 
-[العرض المباشر](https://car-health-monitor.vercel.app) | [الإبلاغ عن مشكلة](https://github.com/yourusername/car-health-monitor/issues)
+[العرض المباشر](https://car-health-monitor-76c344mji-tarek259s-projects.vercel.app) | [الإبلاغ عن مشكلة](https://github.com/Tarek259/carhealth/issues)
 
 </div>
 
@@ -79,10 +79,10 @@
 
 ```bash
 # استنساخ المشروع
-git clone https://github.com/yourusername/car-health-monitor.git
+git clone https://github.com/Tarek259/carhealth.git
 
 # الدخول للمجلد
-cd car-health-monitor
+cd carhealth
 
 # تثبيت الاعتماديات (اختياري - للتطوير)
 npm install
@@ -99,7 +99,7 @@ npm run dev
 
 ### Vercel (موصى به)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/car-health-monitor)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Tarek259/carhealth)
 
 ```bash
 # باستخدام Vercel CLI
@@ -109,7 +109,7 @@ vercel --prod
 
 ### Netlify
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/car-health-monitor)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Tarek259/carhealth)
 
 ```bash
 # باستخدام Netlify CLI
@@ -188,8 +188,8 @@ car-health-monitor/
 
 ## 📞 التواصل
 
-- **الإبلاغ عن مشكلة**: [GitHub Issues](https://github.com/yourusername/car-health-monitor/issues)
-- **اقتراح ميزة**: [GitHub Discussions](https://github.com/yourusername/car-health-monitor/discussions)
+- **الإبلاغ عن مشكلة**: [GitHub Issues](https://github.com/Tarek259/carhealth/issues)
+- **اقتراح ميزة**: [GitHub Discussions](https://github.com/Tarek259/carhealth/discussions)
 
 ---
 
