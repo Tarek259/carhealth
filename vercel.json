@@ -45,6 +45,7 @@
       ]
     }
   ],
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/(.*)",
