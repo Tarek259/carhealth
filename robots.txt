@@ -1,0 +1,8 @@
+# Robots.txt for Car Health Monitor
+# https://www.robotstxt.org/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://car-health-monitor.vercel.app/sitemap.xml

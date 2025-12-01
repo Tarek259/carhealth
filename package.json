@@ -1,0 +1,42 @@
+{
+  "name": "car-health-monitor",
+  "version": "2.1.0",
+  "description": "الملف الطبي للسيارة - تطبيق لمراقبة صحة السيارة وتتبع الصيانات",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000",
+    "build": "echo 'Static site - no build required'",
+    "test": "echo 'No tests configured'",
+    "deploy:netlify": "netlify deploy --prod",
+    "deploy:vercel": "vercel --prod"
+  },
+  "keywords": [
+    "car",
+    "health",
+    "maintenance",
+    "tracker",
+    "arabic",
+    "rtl",
+    "automotive",
+    "vehicle",
+    "service-log"
+  ],
+  "author": "Car Health Monitor Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/car-health-monitor.git"
+  },
+  "homepage": "https://car-health-monitor.vercel.app",
+  "bugs": {
+    "url": "https://github.com/yourusername/car-health-monitor/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0"
+  }
+}

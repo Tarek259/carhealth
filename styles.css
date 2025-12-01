@@ -1,0 +1,246 @@
+/* Main Styles */
+* { 
+    font-family: 'Cairo', sans-serif; 
+}
+
+/* Health Ring */
+.health-ring { 
+    background: conic-gradient(from 0deg, #10b981 calc(var(--health) * 3.6deg), #1f2937 0deg);
+}
+
+/* Car Parts */
+.car-part { 
+    transition: all 0.3s ease; 
+    cursor: pointer; 
+}
+
+.car-part:hover { 
+    transform: scale(1.1); 
+    filter: brightness(1.2); 
+}
+
+/* Animations */
+.pulse-red { 
+    animation: pulseRed 1.5s infinite; 
+}
+
+.pulse-yellow { 
+    animation: pulseYellow 2s infinite; 
+}
+
+@keyframes pulseRed { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0.5; } 
+}
+
+@keyframes pulseYellow { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0.7; } 
+}
+
+/* Tab Navigation */
+.tab-active { 
+    border-bottom: 3px solid #3b82f6; 
+    color: #3b82f6; 
+}
+
+/* Slide Animation */
+.slide-up { 
+    animation: slideUp 0.3s ease-out; 
+}
+
+@keyframes slideUp { 
+    from { transform: translateY(100%); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+}
+
+/* Fade Animation */
+.fade-in { 
+    animation: fadeIn 0.5s ease-out; 
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+/* Progress Bar */
+.progress-bar { 
+    transition: width 0.5s ease-out; 
+}
+
+/* Date Input */
+input[type="date"]::-webkit-calendar-picker-indicator { 
+    filter: invert(1); 
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Button Hover Effects */
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Alert Cards */
+.alert-danger {
+    background: rgba(127, 29, 29, 0.5);
+    border-right: 4px solid #ef4444;
+}
+
+.alert-warning {
+    background: rgba(120, 53, 15, 0.5);
+    border-right: 4px solid #eab308;
+}
+
+.alert-success {
+    background: rgba(20, 83, 45, 0.5);
+    border-right: 4px solid #22c55e;
+}
+
+/* Maintenance Type Buttons */
+.maintenance-type-btn {
+    transition: all 0.2s ease;
+}
+
+.maintenance-type-btn:hover {
+    background: #3b82f6;
+    transform: scale(1.02);
+}
+
+.maintenance-type-btn.selected {
+    background: #3b82f6;
+    border: 2px solid #60a5fa;
+}
+
+/* Light Mode Styles */
+body:not(.dark) {
+    background: linear-gradient(to bottom, #f3f4f6, #e5e7eb) !important;
+    color: #111827 !important;
+}
+
+body:not(.dark) #auth-screen,
+body:not(.dark) #setup-screen,
+body:not(.dark) #profile-screen,
+body:not(.dark) #main-app {
+    background: linear-gradient(to bottom, #f3f4f6, #e5e7eb) !important;
+}
+
+body:not(.dark) .bg-gray-900 {
+    background-color: #ffffff !important;
+}
+
+body:not(.dark) .bg-gray-800 {
+    background-color: #f9fafb !important;
+    color: #111827 !important;
+}
+
+body:not(.dark) .bg-gray-700 {
+    background-color: #f3f4f6 !important;
+    color: #111827 !important;
+}
+
+body:not(.dark) .bg-gray-600 {
+    background-color: #e5e7eb !important;
+    color: #111827 !important;
+}
+
+body:not(.dark) .text-white {
+    color: #111827 !important;
+}
+
+body:not(.dark) .text-gray-400 {
+    color: #6b7280 !important;
+}
+
+body:not(.dark) .text-gray-300 {
+    color: #4b5563 !important;
+}
+
+body:not(.dark) .text-gray-200 {
+    color: #374151 !important;
+}
+
+body:not(.dark) .border-gray-700 {
+    border-color: #d1d5db !important;
+}
+
+body:not(.dark) .border-gray-600 {
+    border-color: #e5e7eb !important;
+}
+
+body:not(.dark) input,
+body:not(.dark) select,
+body:not(.dark) textarea {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+}
+
+body:not(.dark) ::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+body:not(.dark) ::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+}
+
+body:not(.dark) ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+body:not(.dark) input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0);
+}
+
+/* Ensure gradients work in light mode */
+body:not(.dark) .from-blue-600 {
+    --tw-gradient-from: #2563eb !important;
+}
+
+body:not(.dark) .from-green-600 {
+    --tw-gradient-from: #16a34a !important;
+}
+
+body:not(.dark) .from-purple-600 {
+    --tw-gradient-from: #9333ea !important;
+}
+
+body:not(.dark) .from-orange-600 {
+    --tw-gradient-from: #ea580c !important;
+}

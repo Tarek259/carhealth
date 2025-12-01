@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الطبي للسيارة | Car Health Monitor</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 min-h-screen text-white">
+    <!-- Auth Screen (Login/Register) -->
+    <div id="auth-screen" class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4">
+        <div class="max-w-md mx-auto">
+            <!-- Logo -->
+            <div class="text-center py-8">
+                <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full mx-auto flex items-center justify-center mb-4 shadow-2xl">
+                    <span class="text-5xl">🚗</span>
+                </div>
+                <h1 class="text-3xl font-bold">الملف الطبي للسيارة</h1>
+                <p class="text-gray-400 mt-2">راقب صحة سيارتك بذكاء</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="bg-gray-800 rounded-2xl p-6 border border-gray-700">
+                <h2 class="text-xl font-bold text-center mb-6">تسجيل الدخول</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-400 mb-1">اسم المستخدم أو البريد</label>
+                        <input type="text" id="login-username" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="username">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">كلمة المرور</label>
+                        <input type="password" id="login-password" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="••••••••">
+                    </div>
+                    
+                    <button onclick="Screens.handleLogin()" class="w-full bg-gradient-to-r from-blue-500 to-blue-700 py-4 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-800 transition">
+                        🔐 دخول
+                    </button>
+                    
+                    <div class="text-center pt-4 border-t border-gray-700">
+                        <p class="text-gray-400">ليس لديك حساب؟</p>
+                        <button onclick="Screens.showRegister()" class="text-blue-400 hover:text-blue-300 font-semibold mt-2">
+                            إنشاء حساب جديد ←
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="hidden bg-gray-800 rounded-2xl p-6 border border-gray-700">
+                <h2 class="text-xl font-bold text-center mb-6">إنشاء حساب جديد</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-400 mb-1">الاسم الكامل <span class="text-red-400">*</span></label>
+                        <input type="text" id="register-fullname" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="أحمد محمد">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">اسم المستخدم <span class="text-red-400">*</span></label>
+                        <input type="text" id="register-username" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="ahmed123">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">البريد الإلكتروني <span class="text-red-400">*</span></label>
+                        <input type="email" id="register-email" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="ahmed@email.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">رقم الجوال</label>
+                        <input type="tel" id="register-phone" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="05xxxxxxxx">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">كلمة المرور <span class="text-red-400">*</span></label>
+                        <input type="password" id="register-password" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="6 أحرف على الأقل">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-400 mb-1">تأكيد كلمة المرور <span class="text-red-400">*</span></label>
+                        <input type="password" id="register-confirm-password" class="w-full bg-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none" placeholder="أعد كتابة كلمة المرور">
+                    </div>
+                    
+                    <button onclick="Screens.handleRegister()" class="w-full bg-gradient-to-r from-green-500 to-green-700 py-4 rounded-xl font-bold text-lg hover:from-green-600 hover:to-green-800 transition">
+                        ✨ إنشاء الحساب
+                    </button>
+                    
+                    <div class="text-center pt-4 border-t border-gray-700">
+                        <p class="text-gray-400">لديك حساب بالفعل؟</p>
+                        <button onclick="Screens.showLogin()" class="text-blue-400 hover:text-blue-300 font-semibold mt-2">
+                            ← تسجيل الدخول
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="hidden min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-4">
+        <div class="max-w-md mx-auto">
+            <div class="text-center py-6">
+                <span class="text-6xl">🚗</span>
+                <h1 class="text-2xl font-bold mt-4">إضافة سيارة جديدة</h1>
+                <p class="text-gray-400 mt-2">أدخل بيانات سيارتك لبدء التتبع</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-2xl p-6 space-y-4 border border-gray-700">
+                <h2 class="text-lg font-bold text-blue-400 mb-4">📋 بيانات السيارة</h2>
+                
+                <div>
+                    <label class="block text-gray-400 mb-1">ماركة السيارة <span class="text-red-400">*</span></label>
+                    <select id="setup-brand" class="w-full bg-gray-700 rounded-lg p-3 text-white">
+                        <option value="">اختر الماركة</option>
+                        <option value="تويوتا">تويوتا</option>
+                        <option value="هيونداي">هيونداي</option>
+                        <option value="نيسان">نيسان</option>
+                        <option value="هوندا">هوندا</option>
+                        <option value="كيا">كيا</option>
+                        <option value="شيفروليه">شيفروليه</option>
+                        <option value="فورد">فورد</option>
+                        <option value="مرسيدس">مرسيدس</option>
+                        <option value="بي إم دبليو">بي إم دبليو</option>
+                        <option value="لكزس">لكزس</option>
+                        <option value="مازدا">مازدا</option>
+                        <option value="ميتسوبيشي">ميتسوبيشي</option>
+                        <option value="جيب">جيب</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 mb-1">موديل السيارة <span class="text-red-400">*</span></label>
+                    <input type="text" id="setup-model" class="w-full bg-gray-700 rounded-lg p-3 text-white" placeholder="مثال: كورولا، أكسنت، سيفيك...">
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 mb-1">سنة الصنع <span class="text-red-400">*</span></label>
+                    <input type="number" id="setup-year" class="w-full bg-gray-700 rounded-lg p-3 text-white" placeholder="2020" min="1990" max="2025">
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 mb-1">قراءة العداد الحالية (كم) <span class="text-red-400">*</span></label>
+                    <input type="number" id="setup-odometer" class="w-full bg-gray-700 rounded-lg p-3 text-white" placeholder="85000">
+                </div>
+
+                <h2 class="text-lg font-bold text-green-400 mt-6 mb-4">🔧 آخر صيانات (اختياري)</h2>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1 text-sm">آخر تغيير زيت (كم)</label>
+                        <input type="number" id="setup-last-oil" class="w-full bg-gray-700 rounded-lg p-3 text-white text-sm" placeholder="80000">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1 text-sm">دورة تغيير الزيت</label>
+                        <select id="setup-oil-interval" class="w-full bg-gray-700 rounded-lg p-3 text-white text-sm">
+                            <option value="5000">كل 5,000 كم</option>
+                            <option value="7500">كل 7,500 كم</option>
+                            <option value="10000" selected>كل 10,000 كم</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1 text-sm">تاريخ تركيب البطارية</label>
+                        <input type="date" id="setup-battery-date" class="w-full bg-gray-700 rounded-lg p-3 text-white text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1 text-sm">آخر تغيير فرامل (كم)</label>
+                        <input type="number" id="setup-last-brakes" class="w-full bg-gray-700 rounded-lg p-3 text-white text-sm" placeholder="60000">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1 text-sm">كم الإطارات الحالية</label>
+                        <input type="number" id="setup-tires-km" class="w-full bg-gray-700 rounded-lg p-3 text-white text-sm" placeholder="40000">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1 text-sm">آخر سير كاتينة (كم)</label>
+                        <input type="number" id="setup-timing-belt" class="w-full bg-gray-700 rounded-lg p-3 text-white text-sm" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="flex gap-3 mt-6">
+                    <button onclick="Setup.save()" class="flex-1 bg-gradient-to-r from-blue-500 to-blue-700 py-4 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-800 transition">
+                        🚀 حفظ السيارة
+                    </button>
+                    <button onclick="Setup.cancel()" class="px-6 bg-gray-600 hover:bg-gray-700 py-4 rounded-xl font-bold">
+                        إلغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Screen -->
+    <div id="profile-screen" class="hidden min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+        <!-- Profile Header -->
+        <header class="bg-gradient-to-l from-purple-600 to-purple-800 p-6 pb-20">
+            <div class="max-w-md mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="Profile.goBack()" class="bg-white/20 rounded-lg px-4 py-2 hover:bg-white/30">
+                        → رجوع
+                    </button>
+                    <button onclick="Screens.handleLogout()" class="bg-red-500/50 hover:bg-red-500 rounded-lg px-4 py-2">
+                        خروج 🚪
+                    </button>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-white/20 rounded-full mx-auto flex items-center justify-center text-5xl mb-3" id="profile-avatar">👤</div>
+                    <h2 class="text-2xl font-bold" id="profile-name">المستخدم</h2>
+                    <p class="text-purple-200" id="profile-username">@username</p>
+                    <p class="text-purple-300 text-sm mt-1" id="profile-cars-count">0 سيارة</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Content -->
+        <div class="max-w-md mx-auto px-4 -mt-12">
+            <!-- Tabs -->
+            <div class="flex gap-2 mb-4 overflow-x-auto pb-2">
+                <button onclick="Profile.switchTab('info')" id="profile-tab-info" class="profile-tab bg-blue-600 px-4 py-2 rounded-lg whitespace-nowrap">
+                    👤 الملف الشخصي
+                </button>
+                <button onclick="Profile.switchTab('cars')" id="profile-tab-cars" class="profile-tab bg-gray-700 px-4 py-2 rounded-lg whitespace-nowrap">
+                    🚗 سياراتي
+                </button>
+                <button onclick="Profile.switchTab('reports')" id="profile-tab-reports" class="profile-tab bg-gray-700 px-4 py-2 rounded-lg whitespace-nowrap">
+                    📊 التقارير
+                </button>
+                <button onclick="Profile.switchTab('settings')" id="profile-tab-settings" class="profile-tab bg-gray-700 px-4 py-2 rounded-lg whitespace-nowrap">
+                    ⚙️ الإعدادات
+                </button>
+                <button onclick="Profile.switchTab('security')" id="profile-tab-security" class="profile-tab bg-gray-700 px-4 py-2 rounded-lg whitespace-nowrap">
+                    🔒 الأمان
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="profile-content" class="bg-gray-800 rounded-2xl p-4 border border-gray-700 mb-8">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="hidden">
+        <!-- Header -->
+        <header class="bg-gradient-to-l from-blue-600 to-blue-800 p-4 shadow-lg">
+            <div class="max-w-md mx-auto flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-bold">🚗 الملف الطبي للسيارة</h1>
+                    <p class="text-blue-200 text-sm" id="car-info">تويوتا كورولا 2020</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="bg-white/20 rounded-lg px-3 py-1">
+                        <span class="text-sm">العداد:</span>
+                        <span class="font-bold text-lg" id="odometer">0</span>
+                        <span class="text-xs">كم</span>
+                    </div>
+                    <button onclick="Screens.showProfile()" class="bg-white/20 rounded-lg p-2 hover:bg-white/30" id="user-avatar-btn">👤</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Car Selector (if multiple cars) -->
+        <div id="car-selector" class="hidden bg-gray-800 border-b border-gray-700">
+            <div class="max-w-md mx-auto px-4 py-2">
+                <select id="active-car-select" onchange="UI.switchCar(this.value)" class="w-full bg-gray-700 rounded-lg p-2 text-sm">
+                </select>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <nav class="bg-gray-800 border-b border-gray-700">
+            <div class="max-w-md mx-auto flex">
+                <button onclick="UI.switchTab('dashboard')" id="tab-dashboard" class="flex-1 py-3 text-center font-semibold tab-active">
+                    🏥 الحالة
+                </button>
+                <button onclick="UI.switchTab('log')" id="tab-log" class="flex-1 py-3 text-center font-semibold text-gray-400">
+                    📋 السجل
+                </button>
+                <button onclick="UI.switchTab('diagnose')" id="tab-diagnose" class="flex-1 py-3 text-center font-semibold text-gray-400">
+                    🔧 التشخيص
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-md mx-auto p-4 pb-24">
+            <!-- Dashboard Tab -->
+            <div id="content-dashboard" class="fade-in">
+                <!-- Health Score -->
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 mb-4 text-center shadow-xl border border-gray-700">
+                    <h2 class="text-gray-400 mb-2">صحة سيارتك</h2>
+                    <div class="relative w-40 h-40 mx-auto mb-4">
+                        <div class="health-ring w-full h-full rounded-full flex items-center justify-center" id="health-ring" style="--health: 100">
+                            <div class="bg-gray-900 w-32 h-32 rounded-full flex flex-col items-center justify-center">
+                                <span class="text-5xl font-bold text-green-400" id="health-score">100</span>
+                                <span class="text-gray-400 text-sm">من 100</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-4 text-sm">
+                        <span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-500 rounded-full"></span> ممتاز</span>
+                        <span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-500 rounded-full"></span> تحذير</span>
+                        <span class="flex items-center gap-1"><span class="w-3 h-3 bg-red-500 rounded-full"></span> خطر</span>
+                    </div>
+                </div>
+
+                <!-- Car X-Ray Visualization - Enhanced -->
+                <div class="bg-gray-800 rounded-2xl p-4 mb-4 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-gray-400">📍 حالة القطع الرئيسية</h3>
+                        <div class="flex gap-2 text-xs">
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-green-500 rounded-full"></span> جيد</span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-yellow-500 rounded-full"></span> تحذير</span>
+                            <span class="flex items-center gap-1"><span class="w-2 h-2 bg-red-500 rounded-full"></span> خطر</span>
+                        </div>
+                    </div>
+                    
+                    <div class="relative bg-gray-900/50 rounded-xl p-4">
+                        <svg viewBox="0 0 420 220" class="w-full h-56" id="car-diagram">
+                            <!-- Definitions for gradients and filters -->
+                            <defs>
+                                <linearGradient id="carBodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4b5563"/>
+                                    <stop offset="100%" style="stop-color:#1f2937"/>
+                                </linearGradient>
+                                <linearGradient id="windowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1e40af"/>
+                                    <stop offset="100%" style="stop-color:#1e3a5f"/>
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                                <filter id="shadow">
+                                    <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Ground Shadow -->
+                            <ellipse cx="210" cy="195" rx="160" ry="8" fill="#000" opacity="0.3"/>
+                            
+                            <!-- Car Body - Main -->
+                            <path d="M45 125 L65 85 L140 60 L290 60 L355 95 L375 125 L375 150 L45 150 Z" 
+                                  fill="url(#carBodyGradient)" stroke="#6b7280" stroke-width="2" filter="url(#shadow)"/>
+                            
+                            <!-- Car Body - Lower -->
+                            <rect x="45" y="145" width="330" height="20" rx="3" fill="#374151" stroke="#4b5563"/>
+                            
+                            <!-- Windows -->
+                            <path d="M75 90 L135 65 L285 65 L340 100 L340 120 L75 120 Z" 
+                                  fill="url(#windowGradient)" stroke="#3b82f6" stroke-width="1.5"/>
+                            <!-- Window Divider -->
+                            <line x1="200" y1="65" x2="200" y2="120" stroke="#3b82f6" stroke-width="1"/>
+                            
+                            <!-- Headlights -->
+                            <ellipse cx="365" cy="115" rx="8" ry="12" fill="#fef3c7" opacity="0.8"/>
+                            <ellipse cx="55" cy="115" rx="8" ry="12" fill="#fecaca" opacity="0.6"/>
+                            
+                            <!-- ========== PARTS ========== -->
+                            
+                            <!-- Engine Block -->
+                            <g class="car-part" onclick="Modals.showPartDetails('engine')" style="cursor:pointer">
+                                <rect x="295" y="95" width="65" height="40" rx="5" id="part-engine" fill="#22c55e" filter="url(#glow)"/>
+                                <text x="327" y="112" text-anchor="middle" fill="white" font-size="9" font-weight="bold">المحرك</text>
+                                <text x="327" y="125" text-anchor="middle" fill="white" font-size="7" opacity="0.8" id="engine-status-text">حالة جيدة</text>
+                            </g>
+                            
+                            <!-- Battery -->
+                            <g class="car-part" onclick="Modals.showPartDetails('battery')" style="cursor:pointer">
+                                <rect x="265" y="68" width="35" height="22" rx="3" id="part-battery" fill="#22c55e" filter="url(#glow)"/>
+                                <text x="282" y="82" text-anchor="middle" fill="white" font-size="7" font-weight="bold">🔋</text>
+                                <!-- Battery indicator -->
+                                <rect x="268" y="92" width="29" height="4" rx="1" fill="#1f2937"/>
+                                <rect x="268" y="92" width="29" height="4" rx="1" id="battery-level" fill="#22c55e"/>
+                            </g>
+                            
+                            <!-- Oil Pan -->
+                            <g class="car-part" onclick="Modals.showPartDetails('oil')" style="cursor:pointer">
+                                <ellipse cx="200" cy="140" rx="35" ry="12" id="part-oil" fill="#22c55e" filter="url(#glow)"/>
+                                <text x="200" y="138" text-anchor="middle" fill="white" font-size="8" font-weight="bold">🛢️ زيت</text>
+                                <text x="200" y="148" text-anchor="middle" fill="white" font-size="6" id="oil-status-text">متبقي 80%</text>
+                            </g>
+                            
+                            <!-- Timing Belt -->
+                            <g class="car-part" onclick="Modals.showPartDetails('timing-belt')" style="cursor:pointer">
+                                <rect x="255" y="100" width="18" height="30" rx="2" id="part-timing-belt" fill="#22c55e" filter="url(#glow)"/>
+                                <text x="264" y="118" text-anchor="middle" fill="white" font-size="6" font-weight="bold">⛓️</text>
+                                <text x="264" y="126" text-anchor="middle" fill="white" font-size="5">سير</text>
+                            </g>
+                            
+                            <!-- Radiator / Coolant -->
+                            <g class="car-part" onclick="Modals.showPartDetails('coolant')" style="cursor:pointer">
+                                <rect x="310" y="68" width="25" height="22" rx="3" id="part-coolant" fill="#22c55e"/>
+                                <text x="322" y="82" text-anchor="middle" fill="white" font-size="7">💧</text>
+                            </g>
+                            
+                            <!-- AC System -->
+                            <g class="car-part" onclick="Modals.showPartDetails('ac')" style="cursor:pointer">
+                                <rect x="140" y="125" width="30" height="18" rx="3" id="part-ac" fill="#22c55e"/>
+                                <text x="155" y="137" text-anchor="middle" fill="white" font-size="7">❄️</text>
+                            </g>
+                            
+                            <!-- Front Wheel Assembly -->
+                            <g class="car-part" onclick="Modals.showPartDetails('tires')" style="cursor:pointer">
+                                <!-- Tire -->
+                                <circle cx="320" cy="175" r="28" fill="#1f2937" stroke="#374151" stroke-width="6"/>
+                                <circle cx="320" cy="175" r="32" fill="none" id="part-tires-front" stroke="#22c55e" stroke-width="3" filter="url(#glow)"/>
+                                <!-- Rim -->
+                                <circle cx="320" cy="175" r="14" fill="#6b7280" stroke="#9ca3af" stroke-width="1"/>
+                                <circle cx="320" cy="175" r="5" fill="#4b5563"/>
+                                <!-- Brake Disc -->
+                                <circle cx="320" cy="175" r="18" fill="none" id="part-brakes-front" stroke="#22c55e" stroke-width="4" stroke-dasharray="8 4"/>
+                            </g>
+                            
+                            <!-- Rear Wheel Assembly -->
+                            <g class="car-part" onclick="Modals.showPartDetails('tires')" style="cursor:pointer">
+                                <!-- Tire -->
+                                <circle cx="100" cy="175" r="28" fill="#1f2937" stroke="#374151" stroke-width="6"/>
+                                <circle cx="100" cy="175" r="32" fill="none" id="part-tires-rear" stroke="#22c55e" stroke-width="3" filter="url(#glow)"/>
+                                <!-- Rim -->
+                                <circle cx="100" cy="175" r="14" fill="#6b7280" stroke="#9ca3af" stroke-width="1"/>
+                                <circle cx="100" cy="175" r="5" fill="#4b5563"/>
+                                <!-- Brake Disc -->
+                                <circle cx="100" cy="175" r="18" fill="none" id="part-brakes-rear" stroke="#22c55e" stroke-width="4" stroke-dasharray="8 4"/>
+                            </g>
+                            
+                            <!-- Transmission -->
+                            <g class="car-part" onclick="Modals.showPartDetails('transmission')" style="cursor:pointer">
+                                <rect x="175" y="118" width="25" height="20" rx="3" id="part-transmission" fill="#22c55e"/>
+                                <text x="187" y="131" text-anchor="middle" fill="white" font-size="6">⚙️</text>
+                            </g>
+                            
+                            <!-- Exhaust -->
+                            <g class="car-part" onclick="Modals.showPartDetails('exhaust')" style="cursor:pointer">
+                                <rect x="48" y="155" width="35" height="8" rx="2" id="part-exhaust" fill="#22c55e"/>
+                                <circle cx="45" cy="159" r="5" fill="#4b5563" stroke="#6b7280"/>
+                            </g>
+                            
+                            <!-- Suspension indicators -->
+                            <line x1="320" y1="145" x2="320" y2="160" stroke="#22c55e" stroke-width="3" id="part-suspension-front"/>
+                            <line x1="100" y1="145" x2="100" y2="160" stroke="#22c55e" stroke-width="3" id="part-suspension-rear"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Quick Status Cards -->
+                    <div class="grid grid-cols-3 gap-2 mt-4" id="quick-status-cards">
+                        <div class="bg-gray-700/50 rounded-lg p-2 text-center cursor-pointer hover:bg-gray-700 transition" onclick="Modals.showPartDetails('oil')">
+                            <div class="text-lg" id="oil-icon">🛢️</div>
+                            <div class="text-xs text-gray-400">الزيت</div>
+                            <div class="text-xs font-bold" id="oil-quick-status">--</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-2 text-center cursor-pointer hover:bg-gray-700 transition" onclick="Modals.showPartDetails('brakes')">
+                            <div class="text-lg" id="brakes-icon">🛑</div>
+                            <div class="text-xs text-gray-400">الفرامل</div>
+                            <div class="text-xs font-bold" id="brakes-quick-status">--</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-2 text-center cursor-pointer hover:bg-gray-700 transition" onclick="Modals.showPartDetails('battery')">
+                            <div class="text-lg" id="battery-icon">🔋</div>
+                            <div class="text-xs text-gray-400">البطارية</div>
+                            <div class="text-xs font-bold" id="battery-quick-status">--</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-2 text-center cursor-pointer hover:bg-gray-700 transition" onclick="Modals.showPartDetails('tires')">
+                            <div class="text-lg" id="tires-icon">🛞</div>
+                            <div class="text-xs text-gray-400">الإطارات</div>
+                            <div class="text-xs font-bold" id="tires-quick-status">--</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-2 text-center cursor-pointer hover:bg-gray-700 transition" onclick="Modals.showPartDetails('timing-belt')">
+                            <div class="text-lg" id="timing-icon">⛓️</div>
+                            <div class="text-xs text-gray-400">السير</div>
+                            <div class="text-xs font-bold" id="timing-quick-status">--</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-2 text-center cursor-pointer hover:bg-gray-700 transition" onclick="Modals.showPartDetails('engine')">
+                            <div class="text-lg" id="engine-icon">🚗</div>
+                            <div class="text-xs text-gray-400">المحرك</div>
+                            <div class="text-xs font-bold" id="engine-quick-status">--</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center text-xs text-gray-500 mt-3">👆 اضغط على أي قطعة في الرسم أو البطاقات لعرض التفاصيل</p>
+                </div>
+
+                <!-- Alerts Container -->
+                <div id="alerts-container"></div>
+
+                <!-- AI Prediction -->
+                <div class="bg-purple-900/30 border border-purple-700 rounded-xl p-4">
+                    <h3 class="text-purple-400 font-bold mb-3">🤖 تنبؤات الذكاء الاصطناعي</h3>
+                    <div class="bg-purple-900/40 rounded-lg p-3">
+                        <p class="text-sm text-purple-200" id="ai-prediction">
+                            جاري تحليل بيانات سيارتك...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Log & Schedule Tab -->
+            <div id="content-log" class="hidden fade-in">
+                <!-- Upcoming Maintenance -->
+                <div class="bg-gray-800 rounded-2xl p-4 mb-4 border border-gray-700">
+                    <h3 class="text-blue-400 font-bold mb-4">📅 الصيانات القادمة</h3>
+                    <div class="space-y-3" id="upcoming-list">
+                        <p class="text-gray-500 text-center py-4">لا توجد صيانات مجدولة</p>
+                    </div>
+                </div>
+
+                <!-- Service History -->
+                <div class="bg-gray-800 rounded-2xl p-4 border border-gray-700">
+                    <h3 class="text-green-400 font-bold mb-4">📜 السجل التاريخي</h3>
+                    <div class="space-y-3" id="history-list">
+                        <p class="text-gray-500 text-center py-4">لا توجد صيانات مسجلة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnose Tab -->
+            <div id="content-diagnose" class="hidden fade-in">
+                <!-- Symptoms Diagnostic -->
+                <div class="bg-gray-800 rounded-2xl p-4 mb-4 border border-gray-700">
+                    <h3 class="text-blue-400 font-bold mb-4">🔍 تشخيص الأعراض</h3>
+                    <p class="text-sm text-gray-400 mb-4">اختر العرض الذي تلاحظه:</p>
+                    
+                    <div class="space-y-2" id="symptoms-list"></div>
+                </div>
+
+                <!-- Parts Reference -->
+                <div class="bg-gray-800 rounded-2xl p-4 border border-gray-700">
+                    <h3 class="text-orange-400 font-bold mb-4">📊 العمر الافتراضي للقطع</h3>
+                    <div class="space-y-3 text-sm" id="parts-lifespan"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Action Button -->
+        <button onclick="Modals.openMaintenance()" class="fixed bottom-6 left-6 w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full shadow-2xl flex items-center justify-center text-3xl hover:scale-110 transition-transform z-40">
+            +
+        </button>
+
+        <!-- Update Odometer Button -->
+        <button onclick="Modals.openOdometer()" class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-green-500 to-green-700 rounded-full shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform z-40">
+            📍
+        </button>
+    </div>
+
+    <!-- Modals Container -->
+    <div id="modals-container"></div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-600 px-6 py-3 rounded-xl shadow-xl hidden z-50">
+        <p id="toast-message">تم الحفظ!</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/health.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/maintenance.js"></script>
+    <script src="js/diagnosis.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/screens.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/setup.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
