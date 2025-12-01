@@ -1,5 +1,9 @@
-/** Moved to js/setup.js */
-// This file was moved to js/setup.js. Please remove this file after confirming everything works.
+/**
+ * Setup Module
+ * إعداد السيارة لأول مرة
+ */
+
+const Setup = {
     /**
      * Save initial setup data
      */
@@ -138,4 +142,4 @@
             Screens.showMainApp();
         }
     }
-// End of moved file
+};

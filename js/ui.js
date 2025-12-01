@@ -1,3 +1,24 @@
+/**
+ * UI Module
+ * واجهة المستخدم
+ */
+
+const UI = {
+    /**
+     * Update all UI elements
+     */
+    updateAll() {
+        this.updateHeader();
+        this.updateCarSelector();
+        this.updateHealthScore();
+        this.updateCarDiagram();
+        this.updateAlerts();
+        this.updateHistory();
+        this.updateAIPrediction();
+        this.updateDiagnoseTab();
+        this.updateUserAvatar();
+    },
+
     /**
      * Update user avatar in header
      */
@@ -44,7 +65,10 @@
     /**
      * Update header info
      */
-/** This file was moved to js/ui.js and is now intentionally empty to avoid duplicate definitions. */
+    updateHeader() {
+        document.getElementById('car-info').textContent = Data.getCarInfo();
+        document.getElementById('odometer').textContent = Data.carData.odometer.toLocaleString();
+    },
 
     /**
      * Update health score display
